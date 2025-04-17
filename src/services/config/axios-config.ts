@@ -9,7 +9,7 @@ import Cookies from "js-cookie";
 // import { API_REFRESH } from "@/services/api/api";
 
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL_LOCAL, //|| import.meta.env.VITE_API_URL,
+  baseURL: import.meta.env.VITE_API_URL_LOCAL || import.meta.env.VITE_API_URL,
   timeout: 10000,
   headers: {
     "Content-Type": "application/json",
