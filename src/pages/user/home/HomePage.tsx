@@ -8,9 +8,9 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router";
 // import { getCookie } from "@/lib/cookie";
 const HomePage = () => {
-  const { user } = useAuth();
-  const time = new Date().toLocaleString();
-  const updated = `${user?.email} updated at ${time} with new token.`;
+  // const { user } = useAuth();
+  // const time = new Date().toLocaleString();
+  // const updated = `${user?.email} updated at ${time} with new token.`;
   return (
     <div>
       <Header />
