@@ -45,7 +45,7 @@ const ProductCard = () => {
                 ""
               )}
               <Button
-                size={"icon"}
+                icon={2}
                 variant={"outline"}
                 className="absolute top-[10%] right-0 z-10 translate-y-[10%] rounded-r-none"
               >
@@ -70,7 +70,7 @@ const ProductCard = () => {
                   {stock}
                 </p>
                 <div className="flex items-center justify-between">
-                  <Button size={"icon"} variant={"outline"}>
+                  <Button icon={2} variant={"outline"}>
                     <ShoppingCart />
                   </Button>
                   <div className="flex items-center gap-x-0.5">
