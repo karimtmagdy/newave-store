@@ -39,20 +39,15 @@ const PageSignUp = () => {
     }
   };
   return (
-    <div className="flex h-dvh flex-col items-center justify-center p-1">
-      <form
-        onSubmit={onSubmit}
-        className="max-w-full space-y-2 border p-4 sm:w-80 md:w-96 lg:w-2/6 xl:w-1/3"
-      >
-        <h1>sign up</h1>
-        <RegisterInputs form={form} handleInputChange={handleInputChange} />
+    <form onSubmit={onSubmit}>
+      <h1>sign up</h1>
+      <RegisterInputs form={form} handleInputChange={handleInputChange} />
 
-        <Button disabled={isLoading} font={"capitalize"} fullWidth>
-          {isLoading ? "loading" : "register"}
-        </Button>
-        <HaveAccount />
-      </form>
-    </div>
+      <Button disabled={isLoading} font={"capitalize"} fullWidth>
+        {isLoading ? "loading" : "register"}
+      </Button>
+      <HaveAccount />
+    </form>
   );
 };
 

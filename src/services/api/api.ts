@@ -1,6 +1,8 @@
 export const API_SIGNUP = "/auth/sign-up";
 export const API_SIGNIN = "/auth/sign-in";
 export const API_REFRESH = "/auth/refresh";
+// export const API_VERIFY = "/auth/verify";
+export const API_FORGOT_PASSWORD = "/auth/forgot-password";
 export const API_ME = "/auth/me";
 export const API_SIGNOUT = "/auth/sign-out";
 export const API_RESETPASSWORD = "/auth/reset-password/:token";

@@ -1,127 +1,134 @@
 // import ProductList from "@/components/elements/product/product-list";
-import { Button } from "@/components/ui";
-import { useAuth } from "@/hooks/use-auth";
-import { cn } from "@/lib/utils";
-import { API_SIGNIN, API_SIGNUP } from "@/services/api/api";
-import { LogOut, User, UserCircle } from "lucide-react";
-import { useEffect, useState } from "react";
-import { Link } from "react-router";
-// import { getCookie } from "@/lib/cookie";
+
+import Header from "@/components/elements/header/header";
+import { useTheme } from "@/hooks/use-theme";
+import { Theme } from "@/types/TThemeType";
+
 const HomePage = () => {
-  // const { user } = useAuth();
-  // const time = new Date().toLocaleString();
-  // const updated = `${user?.email} updated at ${time} with new token.`;
   return (
     <div>
       <Header />
-
+      <Content />
       <h4>HomePage</h4>
-      {/* {JSON.stringify(localStorage.getItem("token"))} */}
-      {/* {JSON.stringify(getCookie("refreshToken"))} */}
-
-      {/* <p>{updated}</p> */}
     </div>
   );
 };
 
 export default HomePage;
 
-const Header = () => {
-  const { user, isAuthenticated } = useAuth();
-  const [isOpen, setIsOpen] = useState(false);
-  const toggle = () => {
-    setIsOpen((prev) => !prev);
+const ThemeToggles: React.FC = () => {
+  const { theme, setTheme, isDarkMode } = useTheme();
+
+  const handleThemeChange = (newTheme: Theme) => {
+    setTheme(newTheme);
   };
 
   return (
-    <header className="flex h-14 items-center justify-center border-b px-4">
-      <div className="container flex items-center justify-between">
-        <span>logo</span>
-
-        <div className="relative">
-          <Button size={"icon"} variant={"outline"} onClick={toggle}>
-            {user && isAuthenticated ? <User /> : <UserCircle />}
-          </Button>
-          {isOpen && (
-            <ul
-              className={cn(
-                user && isAuthenticated ? "w-52" : "w-36",
-                "absolute top-14 right-0 rounded-lg border bg-white p-1",
-              )}
-              onClick={() => setIsOpen(false)}
-            >
-              {user && isAuthenticated ? (
-                <UserDropMenu />
-              ) : (
-                <UserNotAuthenticated />
-              )}
-            </ul>
-          )}
-        </div>
-      </div>
-    </header>
-  );
-};
-
-const UserNotAuthenticated = () => {
-  return (
-    <>
-      <li>
-        <Link to={API_SIGNUP}>
-          <Button size={"sm"} fullWidth variant={"ghost"}>
-            register
-          </Button>
-        </Link>
-      </li>
-      <li>
-        <Link to={API_SIGNIN}>
-          <Button size={"sm"} fullWidth variant={"ghost"}>
-            login
-          </Button>
-        </Link>
-      </li>
-    </>
-  );
-};
-const FormLogout = () => {
-  const { isAuthenticated, logout } = useAuth();
-  useEffect(() => {
-    if (!isAuthenticated) return logout;
-  }, [isAuthenticated]);
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    return logout!();
-  };
-  return (
-    <form onSubmit={onSubmit}>
-      <Button size={"sm"} fullWidth variant={"ghost"} className="justify-start">
-        <LogOut />
-        logout
-      </Button>
-    </form>
-  );
-};
-
-const UserDropMenu = () => {
-  const { user } = useAuth();
-  return (
-    <>
-      <li>
-        <Link
-          to={`profile/${user?._id}`}
-          className="flex h-9 items-center px-2"
+    <div className="theme-selector">
+      <h2>Theme Settings</h2>
+      <div className="theme-options">
+        <button
+          onClick={() => handleThemeChange("light")}
+          className={`theme-button ${theme === "light" ? "active" : ""}`}
+          style={{
+            padding: "8px 16px",
+            backgroundColor:
+              theme === "light" ? "var(--primary)" : "var(--secondary)",
+            color:
+              theme === "light"
+                ? "var(--primary-foreground)"
+                : "var(--secondary-foreground)",
+            margin: "0 8px",
+            border: "none",
+            borderRadius: "4px",
+            cursor: "pointer",
+          }}
         >
-          profile
-        </Link>
-      </li>
-      <li>
-        <Link to={"settings"} className="flex h-9 items-center px-2">
-          settings
-        </Link>
-      </li>
-      <li>
-        <FormLogout />
-      </li>
-    </>
+          ☀️ Light
+        </button>
+
+        <button
+          onClick={() => handleThemeChange("dark")}
+          className={`theme-button ${theme === "dark" ? "active" : ""}`}
+          style={{
+            padding: "8px 16px",
+            backgroundColor:
+              theme === "dark" ? "var(--primary)" : "var(--secondary)",
+            color:
+              theme === "dark"
+                ? "var(--primary-foreground)"
+                : "var(--secondary-foreground)",
+            margin: "0 8px",
+            border: "none",
+            borderRadius: "4px",
+            cursor: "pointer",
+          }}
+        >
+          🌙 Dark
+        </button>
+
+        <button
+          onClick={() => handleThemeChange("system")}
+          className={`theme-button ${theme === "system" ? "active" : ""}`}
+          style={{
+            padding: "8px 16px",
+            backgroundColor:
+              theme === "system" ? "var(--primary)" : "var(--secondary)",
+            color:
+              theme === "system"
+                ? "var(--primary-foreground)"
+                : "var(--secondary-foreground)",
+            margin: "0 8px",
+            border: "none",
+            borderRadius: "4px",
+            cursor: "pointer",
+          }}
+        >
+          💻 System
+        </button>
+      </div>
+
+      <div className="current-theme-info" style={{ marginTop: "16px" }}>
+        <p>
+          Current theme: <strong>{theme}</strong>
+        </p>
+        <p>Dark mode is {isDarkMode ? "enabled" : "disabled"}</p>
+      </div>
+    </div>
+  );
+};
+
+const Content: React.FC = () => {
+  const { isDarkMode } = useTheme();
+
+  return (
+    <div
+      style={{
+        padding: "2rem",
+        maxWidth: "800px",
+        margin: "0 auto",
+      }}
+    >
+      <h1>Theme System Example</h1>
+
+      <ThemeToggles />
+
+      <div
+        style={{
+          backgroundColor: "var(--card)",
+          color: "var(--card-foreground)",
+          padding: "1rem",
+          borderRadius: "8px",
+          marginTop: "2rem",
+          border: "1px solid var(--border)",
+        }}
+      >
+        <h2>Sample Content Card</h2>
+        <p>This card adapts to your selected theme automatically.</p>
+        <p>
+          The current mode is: <strong>{isDarkMode ? "Dark" : "Light"}</strong>
+        </p>
+      </div>
+    </div>
   );
 };

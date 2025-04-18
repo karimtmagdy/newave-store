@@ -1,8 +1,13 @@
 import { ReactNode } from "react";
-// import { JwtPayload } from "jwt-decode";
 export type Role = "user" | "admin" | "manager" | "moderator";
 type Gender = "male" | "female";
 export type Status = "active" | "inactive" | "banned" | "suspended";
+
+export interface DecodedToken {
+  exp?: number;
+  [key: string]: any;
+}
+
 export type TUserType = {
   _id: string;
   nickname: string;
@@ -40,29 +45,30 @@ export type TUserType = {
   verifyOtpExpireAt?: number;
   resetOtp?: string;
   resetOtpExpireAt?: number;
-  [key: string]: any;
-  exp: number;
 } | null;
 
-export type AuthContextType =
-  | {
-      user: TUserType | null;
-      token?: string | null;
-      isLoading?: boolean;
-      error?: string | null;
-      success?: string | null;
-      isAuthenticated: boolean;
-      isAdmin: boolean;
-      register?: (
-        username: string,
-        email: string,
-        password: string,
-        confirm_password: string,
-      ) => void;
-      login: (email: string, password: string) => void;
-      logout?: () => void;
-    }
-  | undefined;
+export interface AuthState {
+  user: TUserType | null;
+  token: string | null;
+  isLoading: boolean;
+  error: string | null;
+  success: string | null;
+}
+
 export type ProviderProp = {
   children: ReactNode;
 };
+
+export interface AuthContextType extends AuthState {
+  register: (
+    username: string,
+    email: string,
+    password: string,
+    confirm_password: string,
+  ) => Promise<void>;
+  login: (email: string, password: string) => Promise<TUserType | undefined>;
+  logout: () => Promise<void>;
+  refresh: () => Promise<void>;
+  isAuthenticated: boolean;
+  isAdmin: boolean;
+}

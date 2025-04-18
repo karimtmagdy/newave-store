@@ -1,10 +1,13 @@
 import { AuthProvider } from "@/context/auth-context";
+import { ThemeProvider } from "@/context/theme-context";
 import { Outlet } from "react-router";
 
 const RootLayout = () => {
   return (
     <AuthProvider>
-      <Outlet />
+      <ThemeProvider>
+        <Outlet />
+      </ThemeProvider>
     </AuthProvider>
   );
 };

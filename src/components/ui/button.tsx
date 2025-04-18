@@ -16,18 +16,25 @@ const ButtonComponent = React.forwardRef<HTMLButtonElement, ButtonProps>(
       size,
       fullWidth,
       font,
+      shape,
+      icon,
       asChild = false,
       children,
       ...props
     },
     ref,
   ) => {
+    const applied = {
+      variant,
+      font,
+      ...(icon ? { icon } : { size, fullWidth }),
+    };
+
     const buttonClassName = cn(
-      buttonVariants({ variant, size, fullWidth, font, className }),
+      buttonVariants({ shape, ...applied, className }),
     );
 
     if (asChild && React.isValidElement(children)) {
-      // Type assertion to handle the className prop
       return React.cloneElement(children as React.ReactElement<any>, {
         ...props,
         className: cn(buttonClassName, (children.props as any).className),
@@ -43,27 +50,6 @@ const ButtonComponent = React.forwardRef<HTMLButtonElement, ButtonProps>(
   },
 );
 
-// function ButtonComponent({
-//   className,
-//   variant,
-//   size,
-//   fullWidth,
-//   asChild = false,
-//   ...props
-// }: React.ComponentProps<"button"> &
-//   VariantProps<typeof buttonVariants> & {
-//     asChild?: boolean;
-//   }) {
-//   const Comp = asChild ? Slot : "button";
-
-//   return (
-//     <Comp
-//       data-slot="button"
-//       className={cn(buttonVariants({ variant, size, fullWidth, className }))}
-//       {...props}
-//     />
-//   );
-// }
 ButtonComponent.displayName = "Button";
 const Button = React.memo(ButtonComponent);
 

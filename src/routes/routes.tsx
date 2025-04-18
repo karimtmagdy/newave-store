@@ -17,6 +17,7 @@ import AdminRoute from "@/pages/private/admin-route";
 import Privacy from "@/pages/settings/Privacy";
 import CurrencyManagement from "@/pages/settings/CurrencyManagement";
 import Analytics from "@/pages/settings/Analytics";
+import PageForgotPassword from "@/pages/auth/page-forgot-password";
 
 export const router = create([
   {
@@ -40,6 +41,7 @@ export const router = create([
             children: [
               { path: "sign-up", element: <PageSignUp /> },
               { path: "sign-in", element: <PageSignIn /> },
+              { path: "forgot-password", element: <PageForgotPassword /> },
             ],
           },
           {

@@ -6,7 +6,6 @@ import axios, {
 } from "axios";
 import axiosRetry from "axios-retry";
 import Cookies from "js-cookie";
-// import { API_REFRESH } from "@/services/api/api";
 
 const api = axios.create({
   baseURL: import.meta.env.VITE_API_URL_LOCAL || import.meta.env.VITE_API_URL,
@@ -14,7 +13,7 @@ const api = axios.create({
   headers: {
     "Content-Type": "application/json",
     Accept: "application/json",
-    "Access-Control-Allow-Origin": "*", //not get any data
+    "Access-Control-Allow-Origin": "*",
   },
   withCredentials: true,
   cancelToken: axios.CancelToken.source().token,
@@ -39,26 +38,7 @@ api.interceptors.response.use(
     if (isAxiosError(error.response) || error.request) {
       console.error("Response error:", error.response.data);
       if (error.response) {
-        //   if (error.response && error.response.status === 401) {
         try {
-          //   const refreshToken = document.cookie.replace(
-          //     /(?:(?:^|.*;\s*)refreshToken\s*=\s*([^;]*).*$)|^.*$/,
-          //     "$1",
-          //   );
-          //   console.log(refreshToken);
-          //   if (!refreshToken) {
-          //     return Promise.reject(error);
-          //   }
-          //   console.log(refreshToken);
-          //   const response = await api.get(API_REFRESH, {
-          //     headers: { Authorization: `Bearer ${refreshToken}` },
-          //     withCredentials: true,
-          //   });
-          //   console.log(refreshToken);
-          //   const token = response.data.token;
-          //   localStorage.setItem("token", token);
-          //   error.config.headers["Authorization"] = `Bearer ${token}`;
-          //   console.log(token);
           return axios(error.config);
         } catch (refreshError) {
           return Promise.reject(refreshError);

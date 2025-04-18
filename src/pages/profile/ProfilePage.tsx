@@ -14,7 +14,7 @@ const ProfilePage = () => {
       <h1>{user?.username}</h1>
       <h1>{user?.status}</h1>
       <h1>{user?.role}</h1>
-      {/* <img src={user?.photo.url} alt="" /> */}
+      <img src={user?.photo.url} alt="" />
       <h1>{id}</h1>
     </div>
   );
