@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@custom-variant dark (&:is(.dark *));
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -13,21 +14,24 @@ h1 {
   font-size: 3.2em;
   line-height: 1.1;
 }
-
-@layer base {
-  button {
-    @apply inline-flex cursor-pointer items-center justify-center gap-2 border border-transparent disabled:cursor-not-allowed disabled:in-hover:bg-inherit;
+@media (prefers-color-scheme: light) {
+  body {
+    @apply bg-white text-black;
   }
 }
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+@media (prefers-color-scheme: dark) {
+  body {
+    @apply dark:bg-black dark:text-white;
   }
-  .dark {
-    button {
-      @apply !bg-green-600;
-    }
+}
+@layer base {
+  * {
+    @apply m-0 box-border p-0;
+  }
+  #root{
+    @apply min-h-dvh w-full;
+  }
+  button {
+    @apply inline-flex cursor-pointer appearance-none items-center justify-center gap-2 border border-transparent disabled:cursor-not-allowed disabled:in-hover:bg-inherit;
   }
 }

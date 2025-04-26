@@ -10,7 +10,7 @@ const Table = memo(
           <table
             ref={ref}
             className={cn(
-              "w-full table-auto caption-bottom text-sm",
+              "w-full table-auto caption-bottom bg-white text-sm dark:bg-black",
               className,
             )}
             {...props}
@@ -72,7 +72,7 @@ const TableHead = memo(
       <th
         ref={ref}
         className={cn(
-          "h-12 px-4 text-center select-none align-middle font-medium tracking-wider whitespace-nowrap text-zinc-600 uppercase last-of-type:text-center [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]",
+          "h-12 table-cell px-4 text-center align-middle font-medium tracking-wider whitespace-nowrap text-zinc-600 uppercase select-none last-of-type:text-center [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]",
           className,
         )}
         {...props}
@@ -87,10 +87,11 @@ const TableRow = memo(
       <tr
         ref={ref}
         className={cn(
-          "table-row border-b transition-colors hover:bg-zinc-200/50 data-[state=selected]:bg-zinc-100 dark:border-zinc-700 dark:hover:bg-zinc-700/50 data-[state=selected]:dark:bg-zinc-700/50",
+          "table-row divide-x divide-neutral-200 border-b text-black transition-colors hover:bg-zinc-200/50 data-[state=selected]:bg-zinc-100 dark:divide-neutral-600 dark:border-zinc-700 dark:text-white dark:hover:bg-zinc-700/50 data-[state=selected]:dark:bg-zinc-700/50",
           className,
         )}
-        //
+        // odd:hover:bg-gray-200 even:hover:bg-gray-300
+        // dark:odd:hover:bg-zinc-700 dark:even:hover:bg-neutral-900
         {...props}
       />
     ),
@@ -117,7 +118,8 @@ const TableCaption = memo(
     ({ className, ...props }, ref) => (
       <caption
         ref={ref}
-        className={cn("mt-4 text-sm text-zinc-600", className)}
+        // items-center justify-between
+        className={cn("mt-4 h-12 px-4 text-sm text-zinc-600", className)}
         {...props}
       />
     ),

@@ -1,3 +1,5 @@
+import { ApiResponseWithKey } from "./global.types";
+
 export type TCategoryType = {
   _id: string;
   name: string;
@@ -7,7 +9,9 @@ export type TCategoryType = {
   isActive: boolean;
   createdAt: string;
   updatedAt: string;
-  // subcategories: TCategoryType[]
-  // isDeleted : boolean,
-  // parentCategory : string,
 };
+export type CategoryApiResponse = ApiResponseWithKey<
+  "categories",
+  TCategoryType[]
+>;
+// isDeleted : boolean,
