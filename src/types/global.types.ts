@@ -20,3 +20,6 @@ export type PaginateData = {
   results: number;
 };
 export type ApiResponseKey<T> = ApiResponse<T> & PaginateData;
+export type THandleForm = {
+  handleInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+};

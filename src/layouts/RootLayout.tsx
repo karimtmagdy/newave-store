@@ -1,22 +1,16 @@
 import { Outlet } from "react-router";
 import { ThemeProvider } from "@/context/theme-context";
+import { AuthProvider } from "@/context/AuthContext";
 // import { useCategory } from "@/hooks/useCategory";
- 
 
 const RootLayout = () => {
   return (
-    //<AuthProvider>
-    <div className="app-layout">
+    <AuthProvider>
       <ThemeProvider>
         <Outlet />
       </ThemeProvider>
-
-      {/* <CategoryTable /> */}
-    </div>
-    //</AuthProvider>
+    </AuthProvider>
   );
 };
 
 export default RootLayout;
-
- 

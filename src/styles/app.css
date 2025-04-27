@@ -1,0 +1,13 @@
+@import "tailwindcss";
+@custom-variant dark (&:is(.dark *));
+@layer components {
+  .auth-form {
+    @apply flex h-dvh w-full items-center justify-center bg-white p-4 dark:bg-black;
+  }
+  .auth-form > form {
+    @apply w-full space-y-2 rounded-lg border p-4 sm:w-1/2 md:w-2/5;
+  }
+  .auth-form > form > h1 {
+    @apply text-center text-2xl font-bold;
+  }
+}
