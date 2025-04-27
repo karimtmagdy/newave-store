@@ -1,6 +1,6 @@
-// type Gender = "male" | "female";
-// export type Status = "active" | "inactive" | "banned" | "suspended";
-export type Role = "user" | "admin";
+type Gender = "male" | "female";
+type Status = "active" | "inactive" | "banned" | "suspended";
+type Role = "user" | "admin";
 
 export type TUserType = {
   _id: string;
@@ -10,40 +10,40 @@ export type TUserType = {
   password: string;
   confirm_password: string;
   role: Role;
+
+  status: Status;
+  gender: Gender;
+
+  //   updatedAt?: string;
+  //   cart?: string;
+  //   order?: string;
+
+  //   permission: string[];
+
+  //   wishlist?: string;
+  //   likes?: string;
+  //   favorite?: string;
+  //   address?: string;
+  //   resetPasswordToken?: string;
+  //   resetPasswordExpireAt?: string;
+  //   forgotPassword?: string;
+  //   forgotPasswordExpiry?: string;
+  //   verificationToken?: string;
+  //   verificationTokenExpireAt?: string;
+  //   verifyOtp?: string;
+  //   verifyOtpExpireAt?: number;
+  //   resetOtp?: string;
+  //   resetOtpExpireAt?: number;
+  //   active?: boolean;
+  //   slug: string;
+  //   photo: { url: string };
+  //   verified: boolean;
+  //   phone?: number;
+  //   remember_me?: boolean;
+  //   joinedAt: string;
+
+  //   last_login: string;
 };
-//   status: Status;
-//   gender: Gender;
-
-//   updatedAt?: string;
-//   cart?: string;
-//   order?: string;
-
-//   permission: string[];
-
-//   wishlist?: string;
-//   likes?: string;
-//   favorite?: string;
-//   address?: string;
-//   resetPasswordToken?: string;
-//   resetPasswordExpireAt?: string;
-//   forgotPassword?: string;
-//   forgotPasswordExpiry?: string;
-//   verificationToken?: string;
-//   verificationTokenExpireAt?: string;
-//   verifyOtp?: string;
-//   verifyOtpExpireAt?: number;
-//   resetOtp?: string;
-//   resetOtpExpireAt?: number;
-//   active?: boolean;
-//   slug: string;
-//   photo: { url: string };
-//   verified: boolean;
-//   phone?: number;
-//   remember_me?: boolean;
-//   joinedAt: string;
-
-//   last_login: string;
-// };
 
 export type DecodedToken = {
   exp?: number;

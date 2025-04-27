@@ -17,6 +17,7 @@ const SignInPage = () => {
   });
   const onSubmit = (data: LoginSchema) => {
     signin(data.email as string, data.password as string);
+    console.log(data);
   };
   return (
     <section className="auth-form">

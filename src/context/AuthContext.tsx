@@ -171,7 +171,7 @@ export const AuthProvider = ({ children }: ProviderProp) => {
     try {
       const response = await api.post(API_SIGNIN, { email, password });
       const { token: newToken, user: userData } = response.data;
-      localStorage.setItem("token", newToken);
+    //   localStorage.setItem("token", newToken);
       localStorage.setItem("user", JSON.stringify(userData));
 
       dispatch({

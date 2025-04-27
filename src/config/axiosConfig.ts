@@ -1,3 +1,4 @@
+import { API_REFRESH } from "@/services/api/api-url";
 import axios, {
   AxiosError,
   AxiosRequestConfig,
@@ -63,7 +64,7 @@ api.interceptors.response.use(
 
         if (refreshToken) {
           // Call your refresh token endpoint
-          const refreshResponse = await axios.post(`/auth/refresh`, {
+          const refreshResponse = await axios.post(API_REFRESH, {
             refresh_token: refreshToken,
           });
 
