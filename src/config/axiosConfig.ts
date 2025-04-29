@@ -1,4 +1,4 @@
-import { API_REFRESH } from "@/services/api/api-url";
+// import { API_REFRESH } from "@/services/api/api-url";
 import axios, {
   AxiosError,
   AxiosRequestConfig,
@@ -64,18 +64,18 @@ api.interceptors.response.use(
 
         if (refreshToken) {
           // Call your refresh token endpoint
-          const refreshResponse = await axios.post(API_REFRESH, {
-            refresh_token: refreshToken,
-          });
+          // const refreshResponse = await api.post(API_REFRESH, {
+          //   refresh_token: refreshToken,
+          // });
 
           // Store the new tokens
-          const { token, refresh_token } = refreshResponse.data;
-          localStorage.setItem("token", token);
-          localStorage.setItem("refreshToken", refresh_token);
+          // const { token, refresh_token } = refreshResponse.data;
+          // localStorage.setItem("token", token);
+          // localStorage.setItem("refreshToken", refresh_token);
 
           // Update the failed request's Authorization header and retry
           if (originalRequest.headers) {
-            originalRequest.headers.Authorization = `Bearer ${token}`;
+            // originalRequest.headers.Authorization = `Bearer ${token}`;
             return api(originalRequest);
           }
         }

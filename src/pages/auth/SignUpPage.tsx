@@ -6,6 +6,9 @@ import {
   RegisterSchema,
 } from "@/services/validation/authValidate";
 import { useAuth } from "@/hooks/useAuth";
+import Label from "@/components/ui/label";
+import { SignUpForm } from "@/services/constants/form";
+import { FormRegisterValues, TFieldFormProps } from "@/types/TFormField";
 const SignUpPage = () => {
   const { signup } = useAuth();
   const {
@@ -27,62 +30,7 @@ const SignUpPage = () => {
     <section className="auth-form">
       <form onSubmit={handleSubmit(onSubmit)}>
         <h1>Sign Up</h1>
-        <fieldset>
-          <legend className="sr-only">username</legend>
-          <label htmlFor="username">username</label>
-          <input
-            type="text"
-            id="username"
-            {...register("username")}
-            placeholder="enter your username"
-            autoComplete="new-username"
-          />
-          {errors.username && (
-            <p className="text-red-500">{errors.username.message}</p>
-          )}
-        </fieldset>
-        <fieldset>
-          <legend className="sr-only">email</legend>
-          <label htmlFor="email">email</label>
-          <input
-            type="email"
-            id="email"
-            {...register("email")}
-            placeholder="enter your email"
-            autoComplete="new-email"
-          />
-          {errors.email && (
-            <p className="text-red-500">{errors.email.message}</p>
-          )}
-        </fieldset>
-        <fieldset>
-          <legend className="sr-only">password</legend>
-          <label htmlFor="password">password</label>
-          <input
-            type="password"
-            id="password"
-            {...register("password")}
-            placeholder="enter your password"
-            autoComplete="new-password"
-          />
-          {errors.password && (
-            <p className="text-red-500">{errors.password.message}</p>
-          )}
-        </fieldset>
-        <fieldset>
-          <legend className="sr-only">confirm password</legend>
-          <label htmlFor="confirm_password">confirm password</label>
-          <input
-            type="password"
-            id="confirm_password"
-            {...register("confirm_password")}
-            placeholder="confirm your password"
-            autoComplete="new-password"
-          />
-          {errors.confirm_password && (
-            <p className="text-red-500">{errors.confirm_password.message}</p>
-          )}
-        </fieldset>
+        <FormSignUp register={register} errors={errors} />
         <HaveAccount />
         <button className="h-9 w-full rounded-lg bg-black leading-relaxed text-white hover:bg-zinc-600 dark:bg-white dark:text-black dark:hover:bg-zinc-400">
           register
@@ -93,3 +41,31 @@ const SignUpPage = () => {
 };
 
 export default SignUpPage;
+
+const FormSignUp = ({
+  register,
+  errors,
+}: TFieldFormProps<FormRegisterValues>) => {
+  return (
+    <>
+      {SignUpForm.map((field) => (
+        <fieldset key={field.id}>
+          <legend className="sr-only">{field.label}</legend>
+          <Label htmlFor={field.id}>{field.label}</Label>
+          <input
+            type={field.type}
+            id={field.id}
+            {...register(field.id as keyof FormRegisterValues)}
+            placeholder={field.placeholder}
+            autoComplete={field.autoComplete}
+          />
+          {errors[field.id as keyof FormRegisterValues] && (
+            <small className="text-red-500">
+              {errors[field.id as keyof FormRegisterValues]?.message as string}
+            </small>
+          )}
+        </fieldset>
+      ))}
+    </>
+  );
+};

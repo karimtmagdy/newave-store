@@ -1,6 +1,6 @@
 type Gender = "male" | "female";
 type Status = "active" | "inactive" | "banned" | "suspended";
-type Role = "user" | "admin";
+type Role = "user" | "admin"
 
 export type TUserType = {
   _id: string;
@@ -61,8 +61,8 @@ export type AuthContextType = {
     confirm_password: string,
   ) => Promise<TUserType | undefined>;
   signin: (email: string, password: string) => Promise<TUserType | undefined>;
-  logout: () => Promise<void>;
-  refresh: () => Promise<void>;
+  // logout: () => Promise<void>;
+  // refresh: () => Promise<void>;
 };
 // export type TLoginUser = Pick<TUserType, "email" | "password">;
 

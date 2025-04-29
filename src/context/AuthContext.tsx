@@ -1,9 +1,9 @@
 import api from "@/config/axiosConfig";
 import {
   API_ME,
-  API_REFRESH,
+  // API_REFRESH,
   API_SIGNIN,
-  API_SIGNOUT,
+  // API_SIGNOUT,
   API_SIGNUP,
 } from "@/services/api/api-url";
 import { ProviderProp } from "@/types/global.types";
@@ -15,7 +15,7 @@ import {
   initialState,
 } from "@/types/TUserType";
 import { jwtDecode } from "jwt-decode";
-import { getCookie, removeCookie } from "@/utils/cookies";
+import { getCookie } from "@/utils/cookies";
 import {
   createContext,
   useCallback,
@@ -69,6 +69,14 @@ export const AuthProvider = ({ children }: ProviderProp) => {
       const decoded = jwtDecode<DecodedToken>(token);
       if (!decoded.exp) return false;
       const currentTime = Math.floor(Date.now() / 1000);
+      console.log(
+        "Current Time:",
+        new Date(currentTime * 1000).toLocaleString(),
+      );
+      console.log(
+        "Token Expiration Time:",
+        new Date(decoded.exp * 1000).toLocaleString(),
+      );
       return decoded.exp < currentTime;
     } catch (error) {
       console.error("Error decoding token:", error);
@@ -92,7 +100,7 @@ export const AuthProvider = ({ children }: ProviderProp) => {
   const checkAndRefreshToken = useCallback(async () => {
     const storedToken = localStorage.getItem("token");
     if (storedToken && isTokenExpired(storedToken)) {
-      await refresh();
+      // await refresh();
       await getMe();
     }
   }, []);
@@ -105,7 +113,7 @@ export const AuthProvider = ({ children }: ProviderProp) => {
 
   useLayoutEffect(() => {
     const storedUser = localStorage.getItem("user");
-    const storedToken = localStorage.getItem("token") || getCookie("token");
+    const storedToken = localStorage.getItem("token");
 
     if (storedToken && storedUser) {
       try {
@@ -127,7 +135,7 @@ export const AuthProvider = ({ children }: ProviderProp) => {
 
     const checkTokenExpiry = () => {
       if (token && isTokenExpired(token)) {
-        logout();
+        // logout();
       }
     };
 
@@ -138,7 +146,7 @@ export const AuthProvider = ({ children }: ProviderProp) => {
   useLayoutEffect(() => {
     const refreshToken = getCookie("refreshToken");
     if (!refreshToken && token) {
-      logout();
+      // logout();
     }
   }, [token]);
 
@@ -171,7 +179,7 @@ export const AuthProvider = ({ children }: ProviderProp) => {
     try {
       const response = await api.post(API_SIGNIN, { email, password });
       const { token: newToken, user: userData } = response.data;
-    //   localStorage.setItem("token", newToken);
+      localStorage.setItem("token", newToken);
       localStorage.setItem("user", JSON.stringify(userData));
 
       dispatch({
@@ -180,7 +188,16 @@ export const AuthProvider = ({ children }: ProviderProp) => {
       });
       toast.success("Login successful");
 
-      navigate(userData?.role === "admin" ? "/admin" : "/");
+      console.log(userData);
+      // navigate(userData?.role === "admin" ? "/admin" : "/");
+      // navigate(userData?.role === "admin" ? "/" : "/admin");
+      if (userData?.role === "admin") {
+        console.log(userData?.role);
+        // navigate("/admin");
+      } else {
+        // navigate("/");
+        console.log(user?.role);
+      }
       return userData;
     } catch (err: any) {
       const errorMessage = err.response?.data?.message || "Login failed";
@@ -189,54 +206,55 @@ export const AuthProvider = ({ children }: ProviderProp) => {
       throw err;
     }
   };
-  const refresh = async () => {
-    dispatch({ type: "AUTH_START" });
-    const refreshToken = getCookie("refreshToken");
+  // const refresh = async () => {
+  //   dispatch({ type: "AUTH_START" });
+  //   const refreshToken = getCookie("refreshToken");
 
-    if (!refreshToken) {
-      return logout();
-    }
-    try {
-      const response = await api.get(API_REFRESH, {
-        headers: { Authorization: `Bearer ${refreshToken}` },
-      });
-      const newToken = response.data.token;
-      dispatch({ type: "SET_TOKEN", payload: newToken });
-      localStorage.setItem("token", newToken);
-      toast.success(response.data.message || "Token refreshed successfully");
-      const time = new Date().toLocaleString();
-      console.log(`${user?.email} updated at ${time} with new token.`);
-    } catch (err: any) {
-      const errorMessage =
-        err.response?.data?.message || "Failed to refresh token";
-      toast.error(errorMessage);
-      dispatch({ type: "AUTH_ERROR", payload: errorMessage });
-      console.error("Refresh error:", err);
-      logout();
-    }
-  };
-  const logout = async () => {
-    dispatch({ type: "AUTH_START" });
-    try {
-      if (token) {
-        await api.post(API_SIGNOUT, {});
-      }
-      localStorage.removeItem("token");
-      localStorage.removeItem("user");
-      removeCookie("refreshToken");
-      dispatch({ type: "LOGOUT" });
-      toast.success("Logout successful");
-      navigate(API_SIGNIN);
-    } catch (err: any) {
-      const errorMessage = err.response?.data?.message || "Logout failed";
-      toast.error(errorMessage);
-      localStorage.removeItem("token");
-      localStorage.removeItem("user");
-      removeCookie("refreshToken");
-      dispatch({ type: "LOGOUT" });
-      navigate(API_SIGNIN);
-    }
-  };
+  //   if (!refreshToken) {
+  //     return logout();
+  //   }
+  //   try {
+  //     const response = await api.get(API_REFRESH, {
+  //       headers: { Authorization: `Bearer ${refreshToken}` },
+  //     });
+  //     const newToken = response.data.token;
+  //     dispatch({ type: "SET_TOKEN", payload: newToken });
+  //     localStorage.setItem("token", newToken);
+  //     toast.success(response.data.message || "Token refreshed successfully");
+  //     const time = new Date().toLocaleString();
+  //     console.log(`${user?.email} updated at ${time} with new token.`);
+  //   } catch (err: any) {
+  //     const errorMessage =
+  //       err.response?.data?.message || "Failed to refresh token";
+  //     toast.error(errorMessage);
+  //     dispatch({ type: "AUTH_ERROR", payload: errorMessage });
+  //     console.error("Refresh error:", err);
+  //     logout();
+  //   }
+  // };
+
+  // const logout = async () => {
+  //   dispatch({ type: "AUTH_START" });
+  //   try {
+  //     if (token) {
+  //       await api.post(API_SIGNOUT, {});
+  //     }
+  //     localStorage.removeItem("token");
+  //     localStorage.removeItem("user");
+  //     removeCookie("refreshToken");
+  //     dispatch({ type: "LOGOUT" });
+  //     toast.success("Logout successful");
+  //     navigate(API_SIGNIN);
+  //   } catch (err: any) {
+  //     const errorMessage = err.response?.data?.message || "Logout failed";
+  //     toast.error(errorMessage);
+  //     localStorage.removeItem("token");
+  //     localStorage.removeItem("user");
+  //     removeCookie("refreshToken");
+  //     dispatch({ type: "LOGOUT" });
+  //     navigate(API_SIGNIN);
+  //   }
+  // };
   const contextValue = useMemo(
     () => ({
       user,
@@ -246,8 +264,8 @@ export const AuthProvider = ({ children }: ProviderProp) => {
       success,
       signup,
       signin,
-      logout,
-      refresh,
+      // logout,
+      // refresh,
       isAuthenticated: !!token && !!user,
       isAdmin: user?.role === "admin" || false,
       getMe,

@@ -1,3 +1,4 @@
+import { JSX } from "react";
 export type ProviderProp = {
   children: React.ReactNode;
 };
@@ -23,3 +24,9 @@ export type ApiResponseKey<T> = ApiResponse<T> & PaginateData;
 export type THandleForm = {
   handleInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
+
+export type ElementAndChildren = {
+  path: string;
+  element: JSX.Element;
+  children: { path: string; element: JSX.Element }[];
+} & { children: { path: string; element: JSX.Element }[] };

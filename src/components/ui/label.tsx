@@ -1,10 +1,10 @@
 import * as React from "react";
 import { cn } from "@/utils/helpers";
 
-function Label({
+const Label = ({
   className,
   ...props
-}: React.LabelHTMLAttributes<HTMLLabelElement>) {
+}: React.LabelHTMLAttributes<HTMLLabelElement>) => {
   return (
     <label
       data-slot="label"
@@ -15,6 +15,6 @@ function Label({
       {...props}
     />
   );
-}
+};
 
 export default React.memo(Label);

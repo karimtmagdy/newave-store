@@ -5,6 +5,9 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { LoginSchema, loginSchema } from "@/services/validation/authValidate";
 import { useAuth } from "@/hooks/useAuth";
+import { Label } from "@/components/ui";
+import { SignInForm } from "@/services/constants/form";
+import { FormLoginValues, TFieldFormProps } from "@/types/TFormField";
 
 const SignInPage = () => {
   const { signin } = useAuth();
@@ -23,42 +26,15 @@ const SignInPage = () => {
     <section className="auth-form">
       <form onSubmit={handleSubmit(onSubmit)}>
         <h1>Sign In</h1>
-        <fieldset>
-          <label htmlFor="email">email</label>
-          <legend className="sr-only">email</legend>
-          <input
-            type="email"
-            id="email"
-            {...register("email")}
-            placeholder="enter your email"
-            autoComplete="current-email"
-          />{" "}
-          {errors.email && (
-            <p className="text-red-500">{errors.email.message}</p>
-          )}
-        </fieldset>
-        <fieldset>
-          <legend className="sr-only">password</legend>
-          <label htmlFor="password">password</label>
-          <input
-            type="password"
-            id="password"
-            {...register("password")}
-            placeholder="enter your password"
-            autoComplete="current-password"
-          />{" "}
-          {errors.password && (
-            <p className="text-red-500">{errors.password.message}</p>
-          )}
-        </fieldset>
+        <FormSignIn register={register} errors={errors} />
         <div className="flex items-center justify-between gap-2 text-sm">
-          <label
+          <Label
             htmlFor="remember_me"
             className="flex items-center select-none"
           >
             <input type="checkbox" name="remember_me" id="remember_me" />
             remember me
-          </label>
+          </Label>
           <Link to={API_FORGOT_PASSWORD} className="hover:underline">
             forgot password?
           </Link>
@@ -73,3 +49,28 @@ const SignInPage = () => {
 };
 
 export default SignInPage;
+
+const FormSignIn = ({ register, errors }: TFieldFormProps<FormLoginValues>) => {
+  return (
+    <>
+      {SignInForm.map((field) => (
+        <fieldset key={field.id}>
+          <legend className="sr-only">{field.label}</legend>
+          <Label htmlFor={field.id}>{field.label}</Label>
+          <input
+            type={field.type}
+            id={field.id}
+            {...register(field.id as keyof FormLoginValues)}
+            placeholder={field.placeholder}
+            autoComplete={field.autoComplete}
+          />
+          {errors[field.id as keyof FormLoginValues] && (
+            <small className="text-red-500">
+              {errors[field.id as keyof FormLoginValues]?.message as string}
+            </small>
+          )}
+        </fieldset>
+      ))}
+    </>
+  );
+};

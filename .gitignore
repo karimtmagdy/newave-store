@@ -25,6 +25,7 @@ dist-ssr
 category.tsx
 textarea.tsx
 .env
+
 TPaginationType.ts
 TOrderType.tsx
 TFormType.ts
@@ -40,3 +41,5 @@ ForbiddenPage.tsx
 UnauthorizedPage.tsx
 usePagination.ts
 useCategory.ts
+auth.tsx
+button.tsx
