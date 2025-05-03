@@ -3,7 +3,7 @@ import { cn } from "@/utils/helpers";
 import { LogOut } from "lucide-react";
 
 const AdminSideBarMobile = ({ isOpen }: any) => {
-  const { user } = useAuth();
+  // const { user } = useAuth();
 
   return (
     <aside
@@ -26,7 +26,7 @@ const AdminSideBarMobile = ({ isOpen }: any) => {
 export default AdminSideBarMobile;
 
 const UserItem = ({ isOpen }: any) => {
-  const { user, isLoading, isAuthenticated } = useAuth();
+  const { user, isLoading } = useAuth();
   return (
     <>
       <div className="mt-auto border-t"></div>
@@ -44,7 +44,11 @@ const UserItem = ({ isOpen }: any) => {
               {isLoading ? (
                 user?.username.charAt(0)
               ) : (
-                <img src={user?.photo?.url} alt={user?.slug} className='border w-full overflow-hidden rounded-lg h-full' />
+                <img
+                  src={user?.photo?.url}
+                  alt={user?.slug}
+                  className="h-full w-full overflow-hidden rounded-lg border"
+                />
               )}
             </div>
 
