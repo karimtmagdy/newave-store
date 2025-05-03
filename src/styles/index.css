@@ -16,7 +16,40 @@
     @apply bg-white text-black dark:bg-black dark:text-white;
   }
   button {
-    @apply inline-flex cursor-pointer appearance-none items-center justify-center gap-2 border border-transparent font-medium disabled:cursor-not-allowed disabled:in-hover:bg-inherit;
+    @apply inline-flex cursor-pointer whitespace-nowrap appearance-none items-center gap-2 border border-transparent font-medium tracking-wider transition-colors disabled:pointer-events-none disabled:cursor-not-allowed disabled:in-hover:bg-inherit [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg]:text-current [&_svg]:hover:text-current [&&_svg]:h-4 [&&_svg]:w-4;
+    &.default {
+      @apply bg-black text-white hover:bg-black/90 hover:text-white dark:bg-white dark:text-black dark:hover:bg-white/90 dark:hover:text-black;
+    }
+    &.primary {
+      @apply bg-blue-500;
+    }
+    &.success {
+      @apply bg-green-500 text-white hover:bg-green-600;
+    }
+    &.muted {
+      @apply bg-gray-200 hover:bg-gray-100 active:bg-gray-300 dark:bg-neutral-700 dark:hover:bg-neutral-800 dark:active:bg-neutral-900;
+    }
+    &.danger {
+      @apply bg-red-500 hover:bg-red-600;
+    }
+    &.outline {
+      @apply bg-transparent hover:bg-zinc-200/95 dark:hover:bg-zinc-600/90;
+    }
+    &.ghost {
+      @apply border-zinc-200 bg-transparent text-black hover:border-zinc-100 hover:bg-zinc-100 hover:text-zinc-900 dark:border-zinc-600 dark:text-zinc-400 dark:hover:border-zinc-800 dark:hover:bg-zinc-800 dark:hover:text-white;
+    }
+    &.info {
+      @apply bg-blue-500 text-white hover:bg-blue-600;
+    }
+    &.warning {
+      @apply bg-yellow-500 text-white hover:bg-yellow-600;
+    }
+    &.tertiary {
+      @apply bg-neutral-100 text-neutral-900 hover:bg-neutral-200;
+    }
+    &.link {
+      @apply bg-transparent text-blue-500 underline-offset-4 hover:underline;
+    }
   }
   fieldset {
     @apply relative grid gap-1;

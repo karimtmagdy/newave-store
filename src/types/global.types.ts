@@ -14,6 +14,12 @@ export type ApiResponseWithKey<Key extends string, T> = Omit<
 > & {
   [K in Key]: T | null;
 };
+export type ResponseAPI<key extends string, T> = {
+  status: "success" | "pending" | "fail" | "error";
+} & {
+  [K in keyof T as key]: T[K] | null;
+};
+// export type Response<T> = {} & { [K in keyof T]: T[K] | null };
 export type PaginateData = {
   currentPage: number;
   itemsPerPage: number;

@@ -22,7 +22,8 @@ const api = axios.create({
       "Origin, X-Requested-With, Content-Type, Accept",
   },
   // Include cookies in cross-origin requests if needed
-  withCredentials: true,
+  withCredentials: false,
+  // withCredentials: true,
   timeout: DEFAULT_TIMEOUT,
 });
 axiosRetry(api, {

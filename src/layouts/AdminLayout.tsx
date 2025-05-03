@@ -6,6 +6,7 @@ import { useState } from "react";
 import { Outlet } from "react-router";
 
 const AdminLayout = () => {
+  
   const [isOpen, setIsOpen] = useState(false);
   const handleToggle = () => {
     setIsOpen((prev) => !prev);
@@ -18,7 +19,7 @@ const AdminLayout = () => {
       <div className="grow">
         <AdminHeader isOpen={isOpen} handleToggle={handleToggle} />
         <div
-          className={cn("h-full bg-gray-100 pl-2", isOpen ? "pt-14" : "pt-2")}
+          className={cn("h-full md:ml-60 bg-gray-100 pl-2", isOpen ? "pt-14" : "pt-2")}
         >
           <Outlet />
         </div>

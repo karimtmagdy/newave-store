@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { LoginSchema, loginSchema } from "@/services/validation/authValidate";
 import { useAuth } from "@/hooks/useAuth";
-import { Label } from "@/components/ui";
+import { Button, Label } from "@/components/ui";
 import { SignInForm } from "@/services/constants/form";
 import { FormLoginValues, TFieldFormProps } from "@/types/TFormField";
 
@@ -40,9 +40,9 @@ const SignInPage = () => {
           </Link>
         </div>
         <HaveAccount />
-        <button className="h-9 w-full rounded-lg bg-black leading-relaxed text-white hover:bg-zinc-600 dark:bg-white dark:text-black dark:hover:bg-zinc-400">
+        <Button fullWidth size="md" shape="curved">
           login
-        </button>
+        </Button>
       </form>
     </section>
   );

@@ -9,6 +9,7 @@ import { useAuth } from "@/hooks/useAuth";
 import Label from "@/components/ui/label";
 import { SignUpForm } from "@/services/constants/form";
 import { FormRegisterValues, TFieldFormProps } from "@/types/TFormField";
+import { Button } from "@/components/ui";
 const SignUpPage = () => {
   const { signup } = useAuth();
   const {
@@ -32,9 +33,9 @@ const SignUpPage = () => {
         <h1>Sign Up</h1>
         <FormSignUp register={register} errors={errors} />
         <HaveAccount />
-        <button className="h-9 w-full rounded-lg bg-black leading-relaxed text-white hover:bg-zinc-600 dark:bg-white dark:text-black dark:hover:bg-zinc-400">
+        <Button fullWidth size="md" shape="curved">
           register
-        </button>
+        </Button>
       </form>
     </section>
   );

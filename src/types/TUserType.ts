@@ -1,6 +1,5 @@
-type Gender = "male" | "female";
 type Status = "active" | "inactive" | "banned" | "suspended";
-type Role = "user" | "admin"
+type Role = "user" | "admin";
 
 export type TUserType = {
   _id: string;
@@ -10,16 +9,19 @@ export type TUserType = {
   password: string;
   confirm_password: string;
   role: Role;
-
   status: Status;
-  gender: Gender;
+  gender: "male" | "female";
+  photo: { url: string };
+  slug: string;
+  active?: boolean;
+  joinedAt: string;
+  last_login: string;
+  updatedAt?: string;
+  isOnline?: "online" | "offline";
 
-  //   updatedAt?: string;
   //   cart?: string;
   //   order?: string;
-
   //   permission: string[];
-
   //   wishlist?: string;
   //   likes?: string;
   //   favorite?: string;
@@ -34,15 +36,9 @@ export type TUserType = {
   //   verifyOtpExpireAt?: number;
   //   resetOtp?: string;
   //   resetOtpExpireAt?: number;
-  //   active?: boolean;
-  //   slug: string;
-  //   photo: { url: string };
   //   verified: boolean;
   //   phone?: number;
   //   remember_me?: boolean;
-  //   joinedAt: string;
-
-  //   last_login: string;
 };
 
 export type DecodedToken = {
@@ -52,7 +48,9 @@ export type DecodedToken = {
 };
 
 export type AuthContextType = {
+  user: TUserType | null;
   isAuthenticated: boolean;
+  isLoading: boolean;
   isAdmin: boolean;
   signup: (
     username: string,
