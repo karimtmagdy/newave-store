@@ -17,7 +17,7 @@ import {
 } from "lucide-react";
 
 export const menuSide = [
-  { name: "overview", href: "", icon: ChartPie },
+  { name: "overview", href: "overview", icon: ChartPie },
   { name: "dashboard", href: "dashboard", icon: Home },
   { name: "categories", href: "categories", icon: Grid2x2 },
   { name: "add category", href: "add-category", icon: Grid2x2Plus },
@@ -31,12 +31,12 @@ export const menuSide = [
   { name: "add subcategory", href: "add-subcategory", icon: CirclePlus },
   { name: "coupons", href: "coupons", icon: Tickets },
   { name: "add coupon", href: "add-coupon", icon: TicketPlus },
-  
-//   { name: "add coupon", href: "add-coupon", icon: TicketPlus },
-//   { name: "add coupon", href: "add-coupon", icon: TicketPlus },
-//   { name: "add coupon", href: "add-coupon", icon: TicketPlus },
-//   { name: "add coupon", href: "add-coupon", icon: TicketPlus },
-  //   {name:'',href:'',icon:},
+    {name:'orders',href:'orders',icon:Home},
+
+  //   { name: "add coupon", href: "add-coupon", icon: TicketPlus },
+  //   { name: "add coupon", href: "add-coupon", icon: TicketPlus },
+  //   { name: "add coupon", href: "add-coupon", icon: TicketPlus },
+  //   { name: "add coupon", href: "add-coupon", icon: TicketPlus },
   //   {name:'',href:'',icon:},
 ] as const satisfies readonly {
   name: string;

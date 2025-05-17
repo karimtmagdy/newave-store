@@ -7,14 +7,10 @@ const SidebarDesktop = ({ openSidebar }: { openSidebar: boolean }) => {
     <aside
       className={cn(
         "sidebar-desktop",
-        openSidebar
-          ? "w-64 translate-x-0"
-          : "w-0 -translate-x-10 overflow-hidden opacity-0",
+        openSidebar ? "" : "w-0 -translate-x-full border-none opacity-0",
       )}
     >
-      <article className="flex h-12 items-center border-b p-4 whitespace-nowrap">
-        desktop sidebar
-      </article>
+      <article className="head-side">desktop sidebar</article>
       <ContentSidebar />
       <FooterSidebar />
     </aside>

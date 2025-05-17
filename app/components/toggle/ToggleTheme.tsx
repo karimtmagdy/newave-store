@@ -1,14 +1,17 @@
 import useTheme from "~/hooks/useTheme";
+import { Button } from "../ui";
 
 const ToggleTheme = () => {
   const { isDarkMode, setTheme, theme } = useTheme();
   return (
-    <button
-      className="h-6 w-6 cursor-pointer rounded-lg border"
+    <Button
+      icon={3}
+      variant="ghost"
+      shape="square"
       onClick={() => setTheme(theme === "light" ? "dark" : "light")}
     >
       {isDarkMode ? "🌞" : "🌜"}
-    </button>
+    </Button>
   );
 };
 

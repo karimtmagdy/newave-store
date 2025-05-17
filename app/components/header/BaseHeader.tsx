@@ -1,6 +1,7 @@
 import UserDropdown from "./DropDownMenu";
 import TogglePanel from "../toggle/TogglePanel";
 import ToggleTheme from "../toggle/ToggleTheme";
+import React from "react";
 
 interface BaseHeaderProps {
   leftContent: React.ReactNode;
@@ -20,4 +21,4 @@ const BaseHeader = ({ leftContent, className }: BaseHeaderProps) => {
   );
 };
 
-export default BaseHeader;
+export default React.memo(BaseHeader);

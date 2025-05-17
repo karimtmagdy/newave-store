@@ -2,14 +2,17 @@ import { useState } from "react";
 import { Link } from "react-router";
 import useClickOutSide from "~/hooks/useClickOutSide";
 import { cn } from "~/lib/utils";
+import { Button } from "../ui";
 
 export default function UserDropdown() {
   const [isOpen, setIsOpen] = useState(false);
   const ref = useClickOutSide(() => setIsOpen(false));
   return (
     <div className="relative" ref={ref}>
-      <button
-        className="flex h-6 w-6 cursor-pointer items-center justify-center overflow-hidden rounded-lg border"
+      <Button
+        icon={3}
+        variant="ghost"
+        shape="square"
         onClick={() => setIsOpen(!isOpen)}
         aria-expanded={isOpen}
         aria-haspopup="true"
@@ -19,7 +22,7 @@ export default function UserDropdown() {
           src="https://4kwallpapers.com/images/walls/thumbs_3t/12360.png"
           alt="user image"
         />
-      </button>
+      </Button>
 
       <menu
         className={cn(

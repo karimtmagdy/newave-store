@@ -6,6 +6,7 @@ export const meta: MetaFunction = () => {
     { name: "description", content: "Admin category page for Newave Store" },
   ];
 };
+
 const categoryList = () => {
   return <div>categoryList</div>;
 };

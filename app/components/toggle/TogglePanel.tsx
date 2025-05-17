@@ -1,6 +1,6 @@
-// import { Button } from "@/components/ui";
 import { Home, Shield } from "lucide-react";
 import { useLocation, useNavigate } from "react-router";
+import { Button } from "../ui";
 
 const TogglePanel = () => {
   const { pathname } = useLocation();
@@ -11,16 +11,10 @@ const TogglePanel = () => {
     else navigate("/admin");
   };
 
-  {
-    /* <Button onClick={toggleSwitchPage} icon={3} variant="ghost"> */
-  }
   return (
-    <button
-      onClick={toggleSwitchPage}
-      className="flex h-6 w-6 cursor-pointer items-center justify-center rounded-lg border"
-    >
+    <Button icon={3} variant="ghost" shape="square" onClick={toggleSwitchPage}>
       {pathname.includes("admin") ? <Home /> : <Shield />}
-    </button>
+    </Button>
   );
 };
 

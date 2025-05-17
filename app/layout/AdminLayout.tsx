@@ -14,11 +14,16 @@ export const meta: MetaFunction = () => {
   ];
 };
 export default function AdminLayout() {
-  const [openSidebar, setOpenSidebar] = useState(false);
+  const [openSidebar, setOpenSidebar] = useState(true);
   const toggleSidebar = () => setOpenSidebar(!openSidebar);
   return (
-    <div className={cn("admin-layout", openSidebar ? "gap-1" : "gap-0")}>
-      <SidebarMobile openSidebar={openSidebar} />
+    <div
+      className={cn(
+        "admin-layout",
+        openSidebar ? "open-sidebar md:gap-1" : "closed-sidebar gap-0",
+      )}
+    >
+      <SidebarMobile {...{ openSidebar, toggleSidebar }} />
       <SidebarDesktop openSidebar={openSidebar} />
       <div className={cn("children")}>
         <AdminHeader {...{ toggleSidebar, openSidebar }} />

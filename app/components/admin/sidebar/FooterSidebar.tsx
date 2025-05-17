@@ -6,7 +6,7 @@ const FooterSidebar = () => {
     email: "dXx0o@example.com",
   };
   return (
-    <footer className="mt-auto flex h-12 items-center gap-2 border-t px-2 py-1">
+    <footer className="foot-side">
       <img
         src={user.img}
         alt={user.username}
