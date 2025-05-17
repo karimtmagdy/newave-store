@@ -1,13 +1,8 @@
 import { PanelLeft, PanelRight } from "lucide-react";
 import { Button } from "../ui";
+import type { ToggleSidebarProps } from "~/layout/AdminLayout";
 
-const ToggleMenuBar = ({
-  toggleSidebar,
-  openSidebar,
-}: {
-  toggleSidebar: () => void;
-  openSidebar: boolean;
-}) => {
+const ToggleMenuBar = ({ toggleSidebar, openSidebar }: ToggleSidebarProps) => {
   return (
     <Button
       icon={3}

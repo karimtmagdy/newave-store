@@ -2,13 +2,16 @@ import { cn } from "~/lib/utils";
 import FooterSidebar from "./FooterSidebar";
 import ContentSidebar from "./ContentSidebar";
 import ToggleMenuBar from "~/components/toggle/ToggleMenuBar";
+import type { ToggleSidebarProps } from "~/layout/AdminLayout";
 
 const SidebarMobile = ({
   openSidebar,
   toggleSidebar,
+  setOpenSidebar,
 }: {
   openSidebar: boolean;
   toggleSidebar: () => void;
+  setOpenSidebar: any;
 }) => {
   return (
     <aside
@@ -17,12 +20,12 @@ const SidebarMobile = ({
         openSidebar ? "translate-x-0" : "-translate-x-full",
       )}
     >
-      <article className="head-side justify-between h-[52px]">
+      <article className="head-side h-[52px] justify-between">
         <span>desktop sidebar</span>
 
         <ToggleMenuBar {...{ toggleSidebar, openSidebar }} />
       </article>
-      <ContentSidebar />
+      <ContentSidebar {...setOpenSidebar} />
       <FooterSidebar />
     </aside>
   );

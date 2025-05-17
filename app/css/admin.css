@@ -12,7 +12,7 @@
       @apply sticky top-1 hidden h-[calc(100dvh-8px)] rounded-xl border md:flex md:flex-col;
     }
     .sidebar-mobile {
-      @apply absolute z-50 flex h-dvh flex-col border-r md:hidden;
+      @apply fixed z-50 flex min-h-dvh flex-col border-r md:hidden;
     }
     .head-side,
     .foot-side {

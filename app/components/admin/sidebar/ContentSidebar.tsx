@@ -1,15 +1,19 @@
 import { NavLink } from "react-router";
+import useClickOutSide from "~/hooks/useClickOutSide";
+
 import { cn } from "~/lib/utils";
 import { menuSide } from "~/services/constants/menus";
 
-const ContentSidebar = () => {
+const ContentSidebar = ({ setOpenSidebar }: { setOpenSidebar: any }) => {
+  const ref = useClickOutSide(() => setOpenSidebar(false));
   return (
     <ul className="admin-side-list">
       {menuSide.map(({ name, href, icon: Icon }) => (
         <li key={href}>
-          <NavLink to={href} className={"group"}>
+          <NavLink to={href} onClick={() => setOpenSidebar(false)}>
             {({ isActive }: { isActive: boolean }) => (
               <div
+                ref={ref}
                 className={cn("nav-item", {
                   "active-link": isActive,
                 })}

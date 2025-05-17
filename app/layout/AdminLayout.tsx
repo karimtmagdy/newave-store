@@ -13,6 +13,15 @@ export const meta: MetaFunction = () => {
     { name: "description", content: "Admin page for Newave Store" },
   ];
 };
+
+export interface ToggleSidebarProps {
+  openSidebar?: boolean;
+  toggleSidebar?: () => void;
+  // setOpenSidebar?: React.Dispatch<React.SetStateAction<boolean>>;
+}
+// } & React.HTMLAttributes<HTMLDivElement>;
+
+
 export default function AdminLayout() {
   const [openSidebar, setOpenSidebar] = useState(true);
   const toggleSidebar = () => setOpenSidebar(!openSidebar);
@@ -23,7 +32,7 @@ export default function AdminLayout() {
         openSidebar ? "open-sidebar md:gap-1" : "closed-sidebar gap-0",
       )}
     >
-      <SidebarMobile {...{ openSidebar, toggleSidebar }} />
+      <SidebarMobile {...{ openSidebar, toggleSidebar, setOpenSidebar }} />
       <SidebarDesktop openSidebar={openSidebar} />
       <div className={cn("children")}>
         <AdminHeader {...{ toggleSidebar, openSidebar }} />
