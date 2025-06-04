@@ -19,7 +19,7 @@ const SignInPage = () => {
     resolver: zodResolver(loginSchema),
   });
   const onSubmit = (data: TLogin) => {
-    signin(data.email as string, data.password as string);
+    signin!(data.email as string, data.password as string);
     console.log(data);
   };
   return (

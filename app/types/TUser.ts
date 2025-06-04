@@ -1,4 +1,3 @@
-import { type TLogin, type TRegister } from "./../services/validation/authValidate";
 export type Role = "user" | "admin" | "moderator" | "manager";
 export const allowedRoles = ["admin", "manager", "moderator"] as const;
 export type AccessRole = (typeof allowedRoles)[number];
@@ -33,8 +32,8 @@ export type AuthContextType = {
     email: string,
     password: string,
     confirm_password: string,
-  ) => Promise<void | TRegister>;
-  signin?: (email: string, password: string) => Promise<void | TLogin>;
+  ) => Promise<void>;
+  signin?: (email: string, password: string) => Promise<void|TAuth>;
   signout: () => Promise<void>;
 };
 

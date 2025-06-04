@@ -1,10 +1,8 @@
 import {
   createContext,
-  useCallback,
   useContext,
   useLayoutEffect,
   useMemo,
-  useReducer,
   useState,
   type PropsWithChildren,
 } from "react";
@@ -25,7 +23,6 @@ import {
   type TUserType,
 } from "@/types/TUser";
 import type { DecodedToken, TAuth } from "@/types/TUser";
-import type { ApiResponse, SuccessResponse } from "@/types/TGlobal";
 
 export const AuthContext = createContext<AuthContextType | undefined>({
   isAuthenticated: false,
@@ -148,6 +145,7 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
       signup,
       signin,
       signout,
+      getMe,
     }),
     [user, token],
   );
