@@ -1,0 +1,106 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@theme {
+  --font-sans:
+    "Inter", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-display: "Satoshi", "sans-serif";
+  --ease-fluid: var(--ease-fluid);
+  --ease-snappy: var(--ease-snappy);
+  --radius: var(--radius);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --system: calc(var(--system));
+  --system-lg: calc(var(--system) + 4px);
+  --padding: var(--padding);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-deep: var(--deep);
+  --color-ring: var(--ring);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-danger: var(--danger);
+  --color-danger-foreground: var(--danger-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-chart-6: var(--chart-6);
+}
+@layer base {
+  :root {
+    --border: oklch(92% 0.004 286.32);
+    --input: oklch(0.92 0.004 286.32);
+    --ring: oklch(0.705 0.015 286.067);
+    --deep: oklch(37% 0.013 285.805);
+    --radius: 0.625rem;
+    --system: 0.225rem;
+    --padding: 0.5rem;
+    /* --breakpoint-3xl: 120rem; */
+
+    --ease-fluid: cubic-bezier(0.3, 0, 0, 1);
+    --ease-snappy: cubic-bezier(0.2, 0, 0, 1);
+    --background: oklch(1 0 0);
+    --foreground: oklch(0% 0 0);
+    --muted: oklch(0.967 0.001 286.375);
+    --muted-foreground: oklch(27.4% 0.006 286.033);
+    --accent: oklch();
+    --accent-foreground: oklch();
+    --secondary: oklch();
+    --secondary-foreground: oklch();
+    --primary: oklch();
+    --primary-foreground: oklch();
+    --danger: oklch(62.06% 0.254 29);
+    --danger-foreground: oklch();
+    --destructive: oklch();
+    --destructive-foreground: oklch();
+
+    --chart-1: oklch();
+    --chart-2: oklch();
+    --chart-3: oklch();
+    --chart-4: oklch();
+    --chart-5: oklch();
+    --chart-6: oklch(50.92% 0.272 298.7);
+  }
+  .dark {
+    --border: oklch(44.2% 0.017 285.786);
+    --input: oklch(44.2% 0.017 285.786);
+    --background: oklch(0% 0 0);
+    --foreground: oklch(1 0 0);
+    --ring: oklch(0.552 0.016 285.938);
+    --deep: oklch(44.2% 0.017 285.786);
+    --muted: oklch(0.274 0.006 286.033);
+    --muted-foreground: oklch(98.5% 0 0);
+    --accent: oklch();
+    --accent-foreground: oklch();
+    --secondary: oklch();
+    --secondary-foreground: oklch();
+    --primary: oklch();
+    --primary-foreground: oklch();
+    --danger: oklch(0.577 0.245 27.325);
+    --danger-foreground: oklch();
+    --destructive: oklch();
+    --destructive-foreground: oklch();
+
+    --chart-1: oklch();
+    --chart-2: oklch();
+    --chart-3: oklch(36.05% 0.238 265.89);
+    --chart-4: oklch();
+    --chart-5: oklch();
+    --chart-6: oklch(39.03% 0.199 302.33);
+  }
+}
+ 

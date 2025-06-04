@@ -1,0 +1,37 @@
+@import "tailwindcss";
+@import "./globals.css";
+
+@layer components {
+  * {
+    @apply border-border outline-ring/50 [&::-webkit-scrollbar-track]:bg-background m-0 box-border p-0 [&::-webkit-scrollbar]:h-1 [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-red-500 hover:[&::-webkit-scrollbar-thumb]:bg-teal-500;
+  }
+  html,
+  body {
+    @apply bg-background text-foreground min-h-[2000px] scroll-smooth font-sans text-base font-normal antialiased;
+  }
+  /* [&>svg]:!h-3.5 [&>svg]:!w-3.5 */
+  button {
+    @apply inline-flex cursor-pointer items-center justify-center overflow-hidden whitespace-nowrap shadow gap-2 [&>svg]:shrink-0;
+  }
+  small {
+    @apply text-sm leading-none font-medium;
+  }
+  svg {
+    @apply h-4 w-4 shrink-0;
+  }
+  blockquote {
+    @apply mt-6 border-l-2 pl-6 italic;
+  }
+  img {
+    @apply h-full w-full object-cover object-center;
+  }
+  code {
+    @apply relative rounded px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold;
+  }
+
+  input[type="password"],
+  input[type="text"],
+  input[type="email"] {
+    @apply border-input focus-visible:border-ring focus-visible:ring-ring ring-offset-background flex h-9 w-full rounded-lg border bg-transparent px-4 py-2 text-base shadow-sm focus-visible:ring-1 focus-visible:ring-offset-2 focus-visible:outline-none;
+  }
+}

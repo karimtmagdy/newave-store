@@ -1,0 +1,53 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["./app/*"],
+      "@/assets/*": ["app/assets/*"],
+      "@/components/*": ["./app/components/*"],
+      "@/context/*": ["./app/context/*"],
+      "@/css/*": ["./app/css/*"],
+      "@/hooks/*": ["./app/hooks/*"],
+      "@/layout/*": ["./app/layout/*"],
+      "@/lib/*": ["app/lib/*"],
+      "@/modules/*": ["app/modules/*"],
+      "@/pages/*": ["./app/pages/*"],
+      "@/routes/*": ["./app/routes/*"],
+      "@/services/*": ["app/services/*"],
+      "@/types/*": ["./app/types/*"]
+    },
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "skipLibCheck": true,
+
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "verbatimModuleSyntax": true,
+    "moduleDetection": "force",
+    "noEmit": true,
+    "jsx": "react-jsx",
+
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "erasableSyntaxOnly": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedSideEffectImports": true
+  },
+  "include": [
+    "app",
+    "app/main.tsx",
+    "app/App.tsx",
+    "app/vite-env.d.ts",
+    "app/assets",
+    "src/lib",
+    "app/types/TFormField.ts",
+    "src/services"
+  ],
+  "exclude": ["node_modules", "lucide-react"]
+}

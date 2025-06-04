@@ -1,0 +1,23 @@
+@import "tailwindcss";
+@import "./globals.css";
+@layer components {
+  .auth-form {
+    @apply bg-background flex h-dvh w-full flex-col items-center justify-center p-4;
+  }
+  .auth-form > form {
+    @apply w-full space-y-2 rounded-lg border p-4 sm:w-1/2 md:w-2/5;
+  }
+  .auth-form > form > h1 {
+    @apply text-center;
+  }
+  .auth-form > form > fieldset {
+    @apply relative space-y-4;
+  }
+  .auth-form > form > fieldset > input {
+    @apply mt-1;
+  }
+  .auth-form > form > fieldset > small {
+    @apply text-danger text-xs;
+    /* @apply absolute -bottom-1 left-2 text-xs text-red-500; */
+  }
+}
